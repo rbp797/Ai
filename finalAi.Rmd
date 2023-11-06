@@ -85,6 +85,8 @@ summary(data)
 
 
 ```
+
+
 ```{r}
 
 
@@ -191,7 +193,7 @@ num_weights = 17
 
 ```{python}
 
-sol_per_pop = 1000
+sol_per_pop = 150
 num_parents_mating = 2
 
 ```
@@ -207,7 +209,7 @@ new_population = numpy.random.uniform(low=-1.37E-03
 , size=pop_size)
 print(new_population)
 
-num_generations = 230
+num_generations = 100
 for generation in range(num_generations):
     print("Generation : ", generation)
     # Measing the fitness of each chromosome in the population.
@@ -239,6 +241,23 @@ best_match_idx = numpy.where(fitness == numpy.max(fitness))
 
 print("Best coefficients : ", new_population[best_match_idx, :])
 print("Best Interest rate : ", fitness[best_match_idx]*100)
+
+
+```
+
+```{python}
+
+
+import matplotlib.pyplot as plt
+plt.plot(fitness)
+
+plt.title("Best interest rate over (230 months)")
+plt.suptitle("Octuber 1994 - Sept 2023 ")
+plt.xlabel("Generations Selected") 
+plt.ylabel("Interest Rate") 
+
+plt.show()
+
 
 ```
 
