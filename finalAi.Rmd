@@ -261,3 +261,56 @@ plt.show()
 
 ```
 
+
+### What it is the best interest rate fucntion to find it from customer perspective
+
+```{python}
+#pip install geneticalgorithm
+
+
+import numpy as np
+from geneticalgorithm import geneticalgorithm as ga
+
+#define the fitness the equations
+
+def fitness_function(x):
+    x1 = x[0]
+    x2 = x[1]
+    x3 = x[2]
+    x4 = x[3]
+    x5 = x[4]
+    x6 = x[5]
+    x7 = x[6]
+    x8 = x[7]
+    x9 = x[8]
+    x10 = x[9]
+    x11 = x[10]
+    x12 = x[11]
+    x13 = x[12]
+    x14 = x[13]
+    x15 = x[14]
+    x16 = x[15]
+    x17 = x[16]
+    
+    #apply constraints
+
+    penalty = 0
+    
+    if  -2.680e-06*x1 + -0.00001014*x2 + 0.00001686*x3 + 0.000005249*x4 + -0.00002568*x5 + -0.000002184*x6 + 0.000004081*x7 + 0.018*x8 + 0.003076*x9 + -0.001368*x10 + 0.001669*x11 + -0.0004439*x12 + 0.00001685*x13 + 0.000002279*x14 + -0.0000172*x15 + 0.1582*x16 + -0.09859*x17 > fitness[best_match_idx]:
+        penalty = np.inf
+        
+    return - (-2.680e-06*x1 + -0.00001014*x2 + 0.00001686*x3 + 0.000005249*x4 + -0.00002568*x5 + -0.000002184*x6 + 0.000004081*x7 + 0.018*x8 + 0.003076*x9 + -0.001368*x10 + 0.001669*x11 + -0.0004439*x12 + 0.00001685*x13 + 0.000002279*x14 + -0.0000172*x15 + 0.1582*x16 + -0.09859*x17) + penalty
+    
+    ## negative because genetic algoritim will always max and we want to min
+
+# create an instance of the GA solver
+
+
+model = ga(function = fitness_function, dimension = 17, variable_type = 'bool' )
+
+
+model.run()
+
+
+```
+
