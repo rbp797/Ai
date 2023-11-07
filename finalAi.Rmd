@@ -262,7 +262,7 @@ plt.show()
 ```
 
 
-### What it is the best interest rate fucntion to find it from customer perspective
+### What it is the best interest rate? Function to find it from customer perspective
 
 ```{python}
 #pip install geneticalgorithm
