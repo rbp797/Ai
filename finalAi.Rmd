@@ -314,3 +314,37 @@ model.run()
 
 ```
 
+```{r}
+lmInflation<- lm( UNRATE ~interest_Rate , data = data)
+
+summary(lmInflation)
+```
+
+
+
+### When we thing that Fed will stop increasing the interest rate
+
+
+```{python}
+
+def fitness(x):
+    x1 = x[0]
+    
+    #apply constraints
+
+    penalty = 0
+    
+    if  -0.66739*x1   > 0.023:
+        penalty = np.inf
+        
+    return  (-0.66739*x1 ) + penalty + 6.89988
+  
+  # create an instance of the GA solver
+
+
+modelInf = ga(function = fitness, dimension = 1, variable_type = 'bool' )
+
+modelInf.run()
+
+```
+
