@@ -211,12 +211,13 @@ def fitness_function(x):
     #apply constraints
 
     penalty = 0
-    
-    if  -2.680e-06*x1 + -0.00001014*x2 + 0.00001686*x3 + 0.000005249*x4 + -0.00002568*x5 + -0.000002184*x6 + 0.000004081*x7 + 0.018*x8 + 0.003076*x9 + -0.001368*x10 + 0.001669*x11 + -0.0004439*x12 + 0.00001685*x13 + 0.000002279*x14 + -0.0000172*x15 + 0.1582*x16 + -0.09859*x17 > .06:
+
+    if  -2.680e-06*x1 + -0.00001014*x2 + 0.00001686*x3 + 0.000005249*x4 + -0.00002568*x5 + -0.000002184*x6 + 0.000004081*x7 + 0.018*x8 + 0.003076*x9 + -0.001368*x10 + 0.001669*x11 + -0.0004439*x12 + 0.00001685*x13 + 0.000002279*x14 + -0.0000172*x15 + 0.1582*x16 + -0.09859*x17 > .06 or -2.680e-06*x1 + -0.00001014*x2 + 0.00001686*x3 + 0.000005249*x4 + -0.00002568*x5 + -0.000002184*x6 + 0.000004081*x7 + 0.018*x8 + 0.003076*x9 + -0.001368*x10 + 0.001669*x11 + -0.0004439*x12 + 0.00001685*x13 + 0.000002279*x14 + -0.0000172*x15 + 0.1582*x16 + -0.09859*x17 < 0:
         penalty = np.inf
         
-    return - (-2.680e-06*x1 + -0.00001014*x2 + 0.00001686*x3 + 0.000005249*x4 + -0.00002568*x5 + -0.000002184*x6 + 0.000004081*x7 + 0.018*x8 + 0.003076*x9 + -0.001368*x10 + 0.001669*x11 + -0.0004439*x12 + 0.00001685*x13 + 0.000002279*x14 + -0.0000172*x15 + 0.1582*x16 + -0.09859*x17) + penalty
+    return - (-2.680e-06*x1 + -0.00001014*x2 + 0.00001686*x3 + 0.000005249*x4 + -0.00002568*x5 + -0.000002184*x6 + 0.000004081*x7 + 0.018*x8 + 0.003076*x9 + -0.001368*x10 + 0.001669*x11 + -0.0004439*x12 + 0.00001685*x13 + 0.000002279*x14 + -0.0000172*x15 + 0.1582*x16 + -0.09859*x17) + penalty + lm1.intercept_
     
+
     ## negative because genetic algoritim will always max and we want to min
 
 # create an instance of the GA solver
@@ -236,6 +237,29 @@ model = ga(function = fitness_function, dimension = 17, variable_type = 'bool', 
 model.run()
 
 
+
+
+x1 = data[data.columns[data.columns == 'UNRATE'] ]
+
+
+lm5 = lm.fit(x1,y)
+
+
+
+print(lm5.intercept_)
+print(lm5.coef_)
+
+
+
+
+
+
+
+
+
+
+
+
 # When we thing that Fed will stop increasing the interest rate
 
 def fitness(x):
@@ -245,10 +269,10 @@ def fitness(x):
 
     penalty = 0
     
-    if  0.1649 *x1   > 0.023:
+    if  lm5.coef_*x1   > 0.03 or lm5.coef_*x1   < 0.00 :
         penalty = np.inf
         
-    return  (-0.66739*x1 ) + penalty + 6.89988
+    return  (lm5.coef_*x1 ) + penalty + lm5.intercept_
   
   # create an instance of the GA solver
 
